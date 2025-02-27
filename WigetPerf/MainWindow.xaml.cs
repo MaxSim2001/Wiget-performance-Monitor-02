@@ -150,13 +150,43 @@ namespace WigetPerf
             else
                 return 0f; // Aucun GPU trouvé
         }
+        public static void RegisterInStartup(bool enable)
+        {
+            string runKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(runKey, true))
+            {
+                if (enable)
+                {
+                    // Ajoute ou modifie la clé
+                    key.SetValue("MonWidgetPerf", $"\"{System.Reflection.Assembly.GetExecutingAssembly().Location}\"");
+                }
+                else
+                {
+                    // Supprime la clé
+                    if (key.GetValue("MonWidgetPerf") != null)
+                        key.DeleteValue("MonWidgetPerf");
+                }
+            }
+        }
 
+
+
+        // Button de la Drag Bar
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
         // Bouton fermer
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+
+
+
+
+        //Function Affichage
 
         private void TryEnableMica()
         {
@@ -184,23 +214,7 @@ namespace WigetPerf
             }
         }
 
-        public static void RegisterInStartup(bool enable)
-        {
-            string runKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
-            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(runKey, true))
-            {
-                if (enable)
-                {
-                    // Ajoute ou modifie la clé
-                    key.SetValue("MonWidgetPerf", $"\"{System.Reflection.Assembly.GetExecutingAssembly().Location}\"");
-                }
-                else
-                {
-                    // Supprime la clé
-                    if (key.GetValue("MonWidgetPerf") != null)
-                        key.DeleteValue("MonWidgetPerf");
-                }
-            }
-        }
+        
+
     }
 }

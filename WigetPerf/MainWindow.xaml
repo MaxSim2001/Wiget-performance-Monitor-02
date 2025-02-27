@@ -36,12 +36,24 @@
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Top"
                         Height="40">
-                    <TextBlock Text="Widget Perf - Windows 11 Style"
+                    <TextBlock Text="Widget Perf."
                                Foreground="White"
                                VerticalAlignment="Center"
                                Margin="10,0,0,0"
                                FontWeight="Bold"/>
                 </Border>
+
+                <Button Content="-" 
+                        Width="30" 
+                        Height="30"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Margin="0,5,30,0"
+                        Click="MinimizeButton_Click"
+                        Background="Transparent"
+                        Foreground="White"
+                        BorderThickness="0"
+                        FontWeight="Bold"/>
 
                 <!-- Bouton fermer en haut à droite -->
                 <Button Content="X"
